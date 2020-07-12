@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "630759679752",
+    "firebase_url": "https://first-chat-4bcef.firebaseio.com",
+    "project_id": "first-chat-4bcef",
+    "storage_bucket": "first-chat-4bcef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630759679752:android:2810c7fecfee155acdeebd",
+        "android_client_info": {
+          "package_name": "com.ananyamaurya.myfirstchatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630759679752-2litf6u6tliiotrld2kslitraepjjsvi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg_-SFuxW2ew_VsB9YXkYmQR5bjt62ksk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630759679752-2litf6u6tliiotrld2kslitraepjjsvi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
