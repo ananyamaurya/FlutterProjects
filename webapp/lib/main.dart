@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:expandable_bottom_bar/expandable_bottom_bar.dart';
-import 'dart:ui';
+
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:line_icons/line_icons.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +31,28 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    int _selectedIndex = 0;
+    const TextStyle optionStyle =
+        TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+    const List<Widget> _widgetOptions = <Widget>[
+      Text(
+        'Index 0: Home',
+        style: optionStyle,
+      ),
+      Text(
+        'Index 1: Likes',
+        style: optionStyle,
+      ),
+      Text(
+        'Index 2: Search',
+        style: optionStyle,
+      ),
+      Text(
+        'Index 3: Profile',
+        style: optionStyle,
+      ),
+    ];
+    int _page = 0;
     return Scaffold(
       extendBodyBehindAppBar: true,
 
@@ -41,8 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                flex: 3,
+              Flexible(
                 child: Row(
                   children: [
                     Icon(
@@ -56,8 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-              Expanded(
-                flex: 3,
+              Flexible(
                 child: Row(
                   children: [
                     Icon(
@@ -71,8 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-              Expanded(
-                flex: 3,
+              Flexible(
                 child: Row(
                   children: [
                     Icon(
@@ -88,65 +109,27 @@ class _MyHomePageState extends State<MyHomePage> {
               )
             ],
           )),
-
-
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: GestureDetector(
-        onVerticalDragUpdate: DefaultBottomBarController.of(context).onDrag,
-        onVerticalDragEnd: DefaultBottomBarController.of(context).onDragEnd,
-        child: FloatingActionButton.extended(
-          label: Text("Pull up"),
-          elevation: 2,
-          backgroundColor: Colors.deepOrange,
-          foregroundColor: Colors.white,
-
-
-          onPressed: () => DefaultBottomBarController.of(context).swap(),
-        ),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.blueAccent,
+        items: <Widget>[
+          Icon(Icons.add, size: 30),
+          Icon(Icons.list, size: 30),
+          Icon(Icons.compare_arrows, size: 30),
+        ],
+        onTap: (index) {
+          setState(() {
+            _page = index;
+          });
+        },
       ),
 
-      // Actual expandable bottom bar
-      bottomNavigationBar: BottomExpandableAppBar(
-        expandedHeight: 550,
-        horizontalMargin: 16,
-        shape: AutomaticNotchedShape(
-            RoundedRectangleBorder(), StadiumBorder(side: BorderSide())),
-        expandedBackColor: Theme.of(context).backgroundColor,
-        expandedBody: Center(
-          child: Text("Hello world!"),
-        ),
-        bottomAppBarBody: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Expanded(
-                child: Text(
-                  "Tets",
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Spacer(
-                flex: 2,
-              ),
-              Expanded(
-                child: Text(
-                  "Stet",
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
       body: Column(
-
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
           children: [
             Container(
-                width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage("assets/ananya.jpeg"),
